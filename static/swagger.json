@@ -1,0 +1,146 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Weather APIs"
+  },
+  "servers": [
+    {
+      "url": "/"
+    }
+  ],
+  "components": {
+    "schemas": {
+      "WeatherRecord": {
+        "type": "object",
+        "properties": {
+          "station_id": {
+            "type": "string"
+          },
+          "date": {
+            "type": "string"
+          },
+          "max_temp": {
+            "type": "integer"
+          },
+          "min_temp": {
+            "type": "integer"
+          },
+          "ppt": {
+            "type": "integer"
+          }
+        }
+      },
+
+      "AnalysisPerYyear": {
+        "type": "object",
+        "properties": {
+          "station_id": {
+            "type": "string"
+          },
+          "date": {
+            "type": "string"
+          },
+          "max_temp_mean": {
+            "type": "integer"
+          },
+          "min_temp_mean": {
+            "type": "integer"
+          },
+          "ppt_sum": {
+            "type": "integer"
+          }
+        }
+      }
+    }
+  },
+  "paths": {
+    "/api/weather": {
+      "get": {
+        "tags": ["Get All Weather Records"],
+        "summary": "Get All weather records",
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "description": "The page to filter weather records by",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "date",
+            "in": "query",
+            "description": "The date to filter weather records by",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "station_id",
+            "in": "query",
+            "description": "The station to filter weather records by",
+            "required": false,
+            "type": "string"
+          }
+        ],
+
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/components/schemas/WeatherRecord"
+            }
+          },
+          "404": {
+            "description": "NOT FOUND",
+            "schema": {
+              "$ref": "#/components/schemas/WeatherRecord"
+            }
+          }
+        }
+      }
+    },
+    "/api/weather/stats": {
+      "get": {
+        "tags": ["Weather Stats"],
+        "summary": "stats",
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "description": "The page to filter weather stats by",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "date",
+            "in": "query",
+            "description": "The date to filter weather stats by",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "station_id",
+            "in": "query",
+            "description": "The station to filter weather stats by",
+            "required": false,
+            "type": "string"
+          }
+        ],
+
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/components/schemas/WeatherRecord"
+            }
+          },
+          "404": {
+            "description": "NOT FOUND",
+            "schema": {
+              "$ref": "#/components/schemas/WeatherRecord"
+            }
+          }
+        }
+      }
+    }
+  }
+}
